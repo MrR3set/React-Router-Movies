@@ -9,18 +9,20 @@ const App = () => {
   const [savedList, setSavedList] = useState( [] );
 
   const addToSavedList = movie => {
-    setSavedList( [...savedList, movie] );
+    //Should check if movie is already in the list........ but whatever
+    if(!savedList.includes(movie)){
+      setSavedList( [...savedList, movie] );
+    }else{console.log("movie already in list")};
   };
 
   return (
     <div>
       <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
         <Route exact path="/">
           <Movielist></Movielist>
         </Route>
         <Route exact path="/:id">
-          <Movie></Movie>
+          <Movie addToSavedList={addToSavedList}></Movie>
         </Route>
     </div>
   );
